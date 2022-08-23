@@ -1,0 +1,51 @@
+{% extends 'layout.html'%}
+
+{% block body %}
+
+
+    <div class="row m-5">
+        <div class="col-8 mx-auto">
+            <div class="card">
+                <h3 class="card-title text-center">ACTUALIZAR</h3>
+                <div class="card-body">
+                    <form action="/update_info/{{user.0}}" method="POST">
+                        <div class="form-group">
+                            <label for="doc"></label>
+                            <input required value="{{user.1}}" type="number" id="doc" name="documento" placeholder="Documento" class="form-control" >
+                        </div>
+                        <div class="form-group">
+                            <label for="nom" ></label>
+                            <input requiered value="{{user.2}}" type="text" id="nom" name="nombre" placeholder="Nombre" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="nom" ></label>
+                            <input requiered value="{{user.3}}" type="text" id="ape" name="ape" placeholder="Nombre" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="email" ></label>
+                            <input required type="email" id="e-mail" name="e-mail" placeholder="Correo" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="pass" ></label>
+                            <input required type="password" id="pass" name="pass" placeholder="password" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="gen"></label>
+                            <select requiered name="genero" class="custom-select mb-1 form-control">
+                                <option>Seleccione marca</option>
+                                {%for mark in data %}
+                                <option selected value="{{data.get(mark)}}">{{data.get(mark)}}</option>                                                                    
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="form-group mt-5">
+                            <button type="submit" class="btn btn-success btn-block">GUARDAR</button>
+                            <a class="btn btn-danger btn-block" href="/cancel">CANCELAR</a>        
+                        </div>
+                    </form>
+                </div>
+            </div>        
+        </div>
+    </div>
+
+{% endblock %}

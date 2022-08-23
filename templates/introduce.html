@@ -1,0 +1,91 @@
+{% extends 'layout.html'%}
+
+{% block body %}
+
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+{% for message in messages%}
+<div class="alert colores text-center" id="close">
+    <button type="button" class="close" data-dismiss="alert">&times;</button> 
+    {{ message }}
+</div>
+{% endfor%}
+{% endif %}
+{% endwith%}
+    <div class="row m-5">
+        <div class="col-8 mx-auto"> 
+            <div class="card">
+                <h3 class="card-title text-center">REGISTRAR</h3>
+                <div class="card-body">
+                    <form action="/add_info" method="POST" class="color">
+                        <div class="form-group">
+                            <label for="doc"></label>
+                            <input type="number" id="doc" name="documento" placeholder="Documento" class="form-control" required pattern="[0,9].{6,10}">
+                        </div>
+                        <div class="form-group">
+                            <label for="nom" ></label>
+                            <input required type="text" id="nom" name="nombre" placeholder="Nombre" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="ape" ></label>
+                            <input required type="text" id="ape" name="ape" placeholder="Apellido" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="email" ></label>
+                            <input required type="email" id="e-mail" name="e-mail" placeholder="Correo" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="pass" ></label>
+                            <input required type="password" id="pass" name="pass" placeholder="password" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="mark"></label>
+                            <select required name="marca_portatil" class="custom-select mb-1 form-control">
+                                <option selected value="" >Marca Portatil</option>
+                                {%for mark in data %}
+                                    <option value="{{data.get(gen)}}">{{data.get(mark)}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="form-group mt-5">
+                            <button type="submit" class="btn btn-success btn-block entry">INGRESAR</button>
+                        </div>
+                    </form>
+                </div>
+            </div>        
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <table class="table text-center text-uppercase table-bordered ">
+                <thead class="">
+                    <tr>
+                        <th scope="col">Nombres</th>
+                        <th scope="col">Apellidos</th>
+                        <th scope="col">Identificacion</th>
+                        <th scope="col">Correo</th>
+                        <th scope="col">Computador</th> 
+                        <th scope="col">Operaciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for user in usuarios %}
+                    <tr>
+                        <td>{{user.1}}</td>
+                        <td>{{user.2}}</td>
+                        <td>{{user.3}}</td>
+                        <td>{{user.4}}</td>
+                        <td>{{user.6}}</td>
+                        <td>
+                            <a class="btn btn-primary" href="/update_info/{{user.0}}"><i class="fa fa-pencil-square" aria-hidden="true"></i></a>
+                            &nbsp;
+                            <a class="btn btn-danger delete" href="/delete_info/{{user.0}}"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                        </td>
+                    </tr>
+                    {% endfor %}               
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+{% endblock %}

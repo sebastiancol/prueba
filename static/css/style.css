@@ -1,0 +1,36 @@
+
+/*color de la tabla*/
+body{
+    height: 100%;
+    color: white;
+    background: -webkit-linear-gradient(to right, #db110ac2, #2c5c83dc); /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #db110ac2, #184c77dc); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+       
+}
+
+/*perzonalicacion de colores de las cajas imput*/
+::-webkit-input-placeholder { color: red; } 
+::-moz-placeholder { color: red; } 
+
+/*color de las tarjetas*/
+.card{
+    background-color:hsla(241, 73%, 28%, 0.877);
+}
+
+/*clase colores para los mensajes*/
+.colores{
+    background-color:hsla(241, 38%, 37%, 0.877);
+    color: white;
+}
+
+/*color de la tabla*/
+.table{    
+    color: white;
+    background-color:hsla(241, 73%, 28%, 0.877);
+}
+
+/*color del jumbotron*/
+.jumbotron{
+    background: linear-gradient(to right, rgba(230,70,30,1) 0%);
+    background-color:hsla(241, 73%, 28%, 0.877);
+}
