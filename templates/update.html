@@ -18,20 +18,21 @@
                             <input requiered value="{{user.2}}" type="text" id="nom" name="nombre" placeholder="Nombre" class="form-control">
                         </div>
                         <div class="form-group">
-                            <label for="nom" ></label>
+                            <label for="ape" ></label>
                             <input requiered value="{{user.3}}" type="text" id="ape" name="ape" placeholder="Nombre" class="form-control">
                         </div>
                         <div class="form-group">
-                            <label for="email" ></label>
-                            <input required type="email" id="e-mail" name="e-mail" placeholder="Correo" class="form-control">
+                            <label for="correo" ></label>
+                            <input requiered value="{{user.4}}" type="text" id="ape" name="correo" placeholder="Nombre" class="form-control">
                         </div>
                         <div class="form-group">
-                            <label for="pass" ></label>
-                            <input required type="password" id="pass" name="pass" placeholder="password" class="form-control">
+                            <label for="correo" ></label>
+                            <input requiered value="{{user.4}}" type="text" id="pass" name="password" placeholder="Nombre" class="form-control">
                         </div>
+                      
                         <div class="form-group">
-                            <label for="gen"></label>
-                            <select requiered name="genero" class="custom-select mb-1 form-control">
+                            <label for="mark"></label>
+                            <select requiered  value="{{user.5}}" name="marca_portatil" class="custom-select mb-1 form-control">
                                 <option>Seleccione marca</option>
                                 {%for mark in data %}
                                 <option selected value="{{data.get(mark)}}">{{data.get(mark)}}</option>                                                                    

@@ -32,7 +32,7 @@
                         </div>
                         <div class="form-group">
                             <label for="email" ></label>
-                            <input required type="email" id="e-mail" name="e-mail" placeholder="Correo" class="form-control">
+                            <input required type="email" id="e-mail" name="email" placeholder="Correo" class="form-control">
                         </div>
                         <div class="form-group">
                             <label for="pass" ></label>
@@ -43,7 +43,7 @@
                             <select required name="marca_portatil" class="custom-select mb-1 form-control">
                                 <option selected value="" >Marca Portatil</option>
                                 {%for mark in data %}
-                                    <option value="{{data.get(gen)}}">{{data.get(mark)}}</option>
+                                    <option value="{{data.get(mark)}}">{{data.get(mark)}}</option>
                                 {% endfor %}
                             </select>
                         </div>
@@ -65,6 +65,7 @@
                         <th scope="col">Identificacion</th>
                         <th scope="col">Correo</th>
                         <th scope="col">Computador</th> 
+                        <th scope="col">Fecha</th> 
                         <th scope="col">Operaciones</th>
                     </tr>
                 </thead>
@@ -76,6 +77,7 @@
                         <td>{{user.3}}</td>
                         <td>{{user.4}}</td>
                         <td>{{user.6}}</td>
+                        <td>{{user.7}}</td>
                         <td>
                             <a class="btn btn-primary" href="/update_info/{{user.0}}"><i class="fa fa-pencil-square" aria-hidden="true"></i></a>
                             &nbsp;

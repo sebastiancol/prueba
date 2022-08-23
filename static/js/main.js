@@ -1,4 +1,5 @@
 const btn_delete = document.querySelectorAll('.delete');
+//const campSelect = document.getElementById
 
 if(btn_delete){
   const btn_array = Array.from(btn_delete);

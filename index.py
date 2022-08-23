@@ -8,13 +8,14 @@ app= Flask(__name__)
 #base de datos
 PSQL_HOST ="ec2-3-224-184-9.compute-1.amazonaws.com"
 PSQL_PORT = "5432"
-PSQL_USER = "aynmyqyugyiced"
-PSQL_PASS = "1ced5c583c86768d23c576eadacacbd6a3bfe12650f0d0c0525bae2d677671b8"
-PSQL_DB = "d91tdfva64adl6"
+PSQL_USER = "qmzpwzjwzaxaad"
+PSQL_PASS = "144dac742e39a8411a21d02d78375c9ade9df6f42a20b2fd52005dd185746e35"
+PSQL_DB = "d3ari21ljpc8tj"
 connstr = "host=%s port=%s user=%s password=%s dbname=%s" % (PSQL_HOST, PSQL_PORT, PSQL_USER, PSQL_PASS, PSQL_DB)
 conn = psycopg2.connect(connstr)
 cursor = conn.cursor()
 app.secret_key='mysecretkey'
+
 
 #landing page
 @app.route('/')
@@ -33,14 +34,17 @@ def cancel():
     return redirect(url_for('index'))
 
 #obtener marca
+
+
 def get_mark():
     return {
-        'ACER':'ACER',
-        'H.P':'H.P',
-        'LENOVO':'LENOVO',
-        'DELL':'DELL',
-        'MSI':'MSI',
+        "marca1":"ACER",
+        "marca2":"H.P",
+        "marca3":"LENOVO",
+        "marca4":"DELL",
+        "marca5":"MSI",
     }
+
 
 #agregar registro
 @app.route('/add_info',methods=['POST'])
@@ -50,12 +54,12 @@ def add_info():
             documento=request.form['documento']
             nombre=request.form['nombre']
             ape=request.form['ape']
-            email=request.form['e-mail']
+            email=request.form['email']
             contraseña=request.form['pass']
             marca=request.form['marca_portatil']    
             conn = psycopg2.connect(connstr)
             cursor= conn.cursor()        
-            cursor.execute('INSERT INTO users (firstname,lastname,identification,email, password,computer) values (%s,%s,%s,%s,%s,%s,%s)',
+            cursor.execute('INSERT INTO users (firstname,lastname,identification,email, password,computer) values (%s,%s,%s,%s,%s,%s)',
             (nombre,ape,documento,email,contraseña,marca))
             conn.commit()
             cursor.close()
@@ -93,7 +97,8 @@ def update_info(id):
             documento=request.form['documento']
             nombre=request.form['nombre']
             ape=request.form['ape']
-            fecha=request.form['fecha']
+            email=request.form['e-mail']
+            contrasena=request.form['pass']
             marca=request.form['marca_portatil']    
             cursor.execute(""" 
                 UPDATE users 
@@ -101,9 +106,10 @@ def update_info(id):
                 lastname=%s, 
                 identification=%s, 
                 email=%s,
-                password=%s,
-                fecha=%s
-                WHERE id=%s """, (id, documento,nombre,ape,marca,fecha))
+                password=%s,  
+                computer=%s,            
+                WHERE id=%s """, (nombre,ape,documento,email,contrasena, marca,id))
+                 
             conn.commit()
             cursor.close()
             conn.close()  
@@ -116,11 +122,9 @@ def update_info(id):
 #eliminar informacion
 @app.route('/delete_info/<string:id>')
 def delete_info(id):
-
-
     conn = psycopg2.connect(connstr)
     cursor = conn.cursor()
-    cursor.execute('DELETE FROM user WHERE id={}'.format(id))
+    cursor.execute('DELETE FROM users WHERE id={}'.format(id))
     conn.commit()
     cursor.close()
     conn.close()
